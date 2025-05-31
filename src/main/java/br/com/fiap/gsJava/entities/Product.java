@@ -2,14 +2,28 @@ package br.com.fiap.gsJava.entities;
 
 import java.io.Serializable;
 
-public class Product implements Serializable{
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private Double price;
 	
+	@ManyToOne
+	@JoinColumn(name = "category_id")
 	private Category category;
+	
+
 	
 	public Product() {
 		
