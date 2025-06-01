@@ -9,8 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.fiap.gsJava.entities.Category;
 import br.com.fiap.gsJava.entities.Product;
+import br.com.fiap.gsJava.entities.Selo;
 import br.com.fiap.gsJava.repositories.CategoryRepository;
 import br.com.fiap.gsJava.repositories.ProductRepository;
+import br.com.fiap.gsJava.repositories.SeloRepository;
 
 @SpringBootApplication
 public class GsJavaApplication implements CommandLineRunner{
@@ -20,6 +22,9 @@ public class GsJavaApplication implements CommandLineRunner{
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private SeloRepository seloRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(GsJavaApplication.class, args);
@@ -45,6 +50,14 @@ public class GsJavaApplication implements CommandLineRunner{
 		productRepository.save(p2);
 		productRepository.save(p3);
 		productRepository.save(p4);
+		
+		Selo s1 = new Selo(null, "comum");
+		Selo s2 = new Selo(null, "confiavel");
+		Selo s3 = new Selo(null, "heroi");
+		
+		seloRepository.save(s1);
+		seloRepository.save(s2);
+		seloRepository.save(s3);
 		
 	}
 

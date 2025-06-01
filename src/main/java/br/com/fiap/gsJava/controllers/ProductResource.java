@@ -1,4 +1,4 @@
-package br.com.fiap.gsJava.resources;
+package br.com.fiap.gsJava.controllers;
 
 import java.util.List;
 
