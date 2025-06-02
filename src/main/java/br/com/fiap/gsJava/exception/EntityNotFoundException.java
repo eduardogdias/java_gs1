@@ -1,4 +1,4 @@
-package br.com.fiap.gsJava.exceptions;
+package br.com.fiap.gsJava.exception;
 
 public class EntityNotFoundException extends RuntimeException{
 	private static final long serialVersionUID = 1L;

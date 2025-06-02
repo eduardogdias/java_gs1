@@ -1,6 +1,6 @@
-package br.com.fiap.gsJava.dto;
+package br.com.fiap.gsJava.dto.usuario;
 
-import br.com.fiap.gsJava.entities.Usuario;
+import br.com.fiap.gsJava.entity.Usuario;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

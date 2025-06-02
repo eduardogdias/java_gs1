@@ -1,4 +1,4 @@
-package br.com.fiap.gsJava.services;
+package br.com.fiap.gsJava.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.fiap.gsJava.entities.Selo;
-import br.com.fiap.gsJava.exceptions.EntityNotFoundException;
-import br.com.fiap.gsJava.repositories.SeloRepository;
+import br.com.fiap.gsJava.entity.Selo;
+import br.com.fiap.gsJava.exception.EntityNotFoundException;
+import br.com.fiap.gsJava.repository.SeloRepository;
 
 @Service
 public class SeloService {

@@ -1,4 +1,4 @@
-package br.com.fiap.gsJava.services;
+package br.com.fiap.gsJava.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,14 +7,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.fiap.gsJava.dto.UsuarioDTO;
-import br.com.fiap.gsJava.dto.UsuarioRequestDTO;
-import br.com.fiap.gsJava.entities.Selo;
-import br.com.fiap.gsJava.entities.Usuario;
-import br.com.fiap.gsJava.exceptions.EntityNotFoundException;
-import br.com.fiap.gsJava.exceptions.SeloNotFoundException;
-import br.com.fiap.gsJava.repositories.SeloRepository;
-import br.com.fiap.gsJava.repositories.UsuarioRepository;
+import br.com.fiap.gsJava.dto.usuario.UsuarioDTO;
+import br.com.fiap.gsJava.dto.usuario.UsuarioRequestDTO;
+import br.com.fiap.gsJava.entity.Selo;
+import br.com.fiap.gsJava.entity.Usuario;
+import br.com.fiap.gsJava.exception.EntityNotFoundException;
+import br.com.fiap.gsJava.repository.SeloRepository;
+import br.com.fiap.gsJava.repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {
@@ -53,7 +52,8 @@ public class UsuarioService {
 	    // Carrega o selo do banco
 		Optional<Selo> optionalSelo = seloRepository.findById(usuarioRequestDTO.getSeloId());
 		if (optionalSelo.isEmpty()) {
-		    throw new SeloNotFoundException(usuarioRequestDTO.getSeloId());
+		    //throw new SeloNotFoundException(usuarioRequestDTO.getSeloId());
+			throw new EntityNotFoundException("Selo de ID " + usuarioRequestDTO.getSeloId() + " não encontrado");
 		}
 
 	    Usuario entity = new Usuario(usuarioRequestDTO);
@@ -81,7 +81,10 @@ public class UsuarioService {
 
 	    // Busca o selo
 	    Selo selo = seloRepository.findById(usuarioRequestDTO.getSeloId())
-	            .orElseThrow(() -> new SeloNotFoundException(usuarioRequestDTO.getSeloId()));
+	            .orElseThrow(() -> 
+	            //new SeloNotFoundException(usuarioRequestDTO.getSeloId())
+	            new EntityNotFoundException("Selo de ID " + usuarioRequestDTO.getSeloId() + " não encontrado")
+	            		);
 
 	    usuarioExistente.setSelo(selo);
 

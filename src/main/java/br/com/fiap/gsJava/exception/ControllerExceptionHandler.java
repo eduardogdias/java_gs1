@@ -1,4 +1,4 @@
-package br.com.fiap.gsJava.exceptions;
+package br.com.fiap.gsJava.exception;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,11 +36,4 @@ public class ControllerExceptionHandler { //vai interceptar todas as exception d
         return ResponseEntity.badRequest().body(response);
     }
 	
-	@ExceptionHandler(SeloNotFoundException.class)
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public ResponseEntity<Map<String, String>> handleSeloNotFound(SeloNotFoundException ex) {
-	    Map<String, String> response = new HashMap<>();
-	    response.put("message", ex.getMessage());
-	    return ResponseEntity.badRequest().body(response);
-	}
 }

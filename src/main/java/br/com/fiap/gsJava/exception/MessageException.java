@@ -1,4 +1,4 @@
-package br.com.fiap.gsJava.exceptions;
+package br.com.fiap.gsJava.exception;
 
 import lombok.Getter;
 import lombok.Setter;

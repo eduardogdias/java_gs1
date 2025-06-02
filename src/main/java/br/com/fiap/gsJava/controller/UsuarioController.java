@@ -1,4 +1,4 @@
-package br.com.fiap.gsJava.controllers;
+package br.com.fiap.gsJava.controller;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fiap.gsJava.dto.UsuarioDTO;
-import br.com.fiap.gsJava.dto.UsuarioRequestDTO;
-import br.com.fiap.gsJava.entities.Usuario;
-import br.com.fiap.gsJava.services.UsuarioService;
+import br.com.fiap.gsJava.dto.usuario.UsuarioDTO;
+import br.com.fiap.gsJava.dto.usuario.UsuarioRequestDTO;
+import br.com.fiap.gsJava.entity.Usuario;
+import br.com.fiap.gsJava.service.UsuarioService;
 import jakarta.validation.Valid;
 
 @RestController

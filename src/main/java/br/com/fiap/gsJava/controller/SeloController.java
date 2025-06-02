@@ -1,4 +1,4 @@
-package br.com.fiap.gsJava.controllers;
+package br.com.fiap.gsJava.controller;
 
 import java.util.List;
 
@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fiap.gsJava.entities.Selo;
-
-import br.com.fiap.gsJava.services.SeloService;
+import br.com.fiap.gsJava.entity.Selo;
+import br.com.fiap.gsJava.service.SeloService;
 import jakarta.validation.Valid;
 
 @RestController

@@ -1,13 +1,11 @@
-package br.com.fiap.gsJava.entities;
+package br.com.fiap.gsJava.entity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.com.fiap.gsJava.repositories.SeloRepository;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
