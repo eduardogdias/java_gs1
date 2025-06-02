@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.gsJava.dto.UsuarioDTO;
+import br.com.fiap.gsJava.dto.UsuarioRequestDTO;
 import br.com.fiap.gsJava.entities.Usuario;
 import br.com.fiap.gsJava.services.UsuarioService;
 import jakarta.validation.Valid;
@@ -24,35 +25,38 @@ public class UsuarioController {
 
 	
 	@Autowired
-	private UsuarioService UsuarioService;
+	private UsuarioService usuarioService;
 	
 	@GetMapping
 	public ResponseEntity<List<UsuarioDTO>> findAll(){
-		List<UsuarioDTO> list = UsuarioService.findAll();
+		List<UsuarioDTO> list = usuarioService.findAll();
 		return ResponseEntity.ok().body(list); 
 	}
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<UsuarioDTO> findById(@PathVariable Long id){
-		UsuarioDTO dto = UsuarioService.findById(id);
+		UsuarioDTO dto = usuarioService.findById(id);
 		return ResponseEntity.ok().body(dto);				
 	}
 	
+	
 	@PostMapping
-	public ResponseEntity<Usuario> save(@RequestBody @Valid Usuario Usuario){
-		Usuario result = UsuarioService.save(Usuario);
-		return ResponseEntity.created(null).body(result);	
+	public ResponseEntity<UsuarioDTO> save(@RequestBody @Valid UsuarioRequestDTO usuarioRequestDTO){
+		UsuarioDTO dto = usuarioService.save(usuarioRequestDTO);
+		return ResponseEntity.created(null).body(dto);	
 	}
 	
+	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Usuario> update(@PathVariable Long id, @RequestBody Usuario Usuario){
-		Usuario UsuarioAtualizado = UsuarioService.update(id, Usuario);
-		return ResponseEntity.ok().body(UsuarioAtualizado);	
+	public ResponseEntity<UsuarioDTO> update(@PathVariable Long id, @RequestBody @Valid UsuarioRequestDTO usuarioRequestDTO) {
+	    UsuarioDTO usuarioAtualizado = usuarioService.update(id, usuarioRequestDTO);
+	    return ResponseEntity.ok().body(usuarioAtualizado);
 	}
+
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Usuario> deleteById(@PathVariable Long id){
-		Usuario Usuario = UsuarioService.deleteById(id);
+		Usuario Usuario = usuarioService.deleteById(id);
 		return ResponseEntity.ok().body(Usuario);			
 	}
 	

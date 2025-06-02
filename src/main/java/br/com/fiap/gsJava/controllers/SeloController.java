@@ -47,7 +47,7 @@ public class SeloController {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Selo> update(@PathVariable Long id, @RequestBody Selo selo){
+	public ResponseEntity<Selo> update(@PathVariable Long id, @RequestBody @Valid Selo selo){
 		Selo seloAtualizado = seloService.update(id, selo);
 		return ResponseEntity.ok().body(seloAtualizado);
 		

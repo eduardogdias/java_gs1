@@ -3,8 +3,11 @@ package br.com.fiap.gsJava.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.com.fiap.gsJava.repositories.SeloRepository;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,6 +20,7 @@ import jakarta.validation.constraints.NotBlank;
 @Table(name = "tb_selo")
 public class Selo {
 	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -36,6 +40,11 @@ public class Selo {
 	public Selo(Long id, String descricao) {
 		this.id = id;
 		this.descricao = descricao;
+	}
+	
+	public Selo(Long id) { //construtor para criar o selo só com o 'seloId' no POST e PUT de 'usuario'
+		this.id = id;
+		
 	}
 
 	public Long getId() {

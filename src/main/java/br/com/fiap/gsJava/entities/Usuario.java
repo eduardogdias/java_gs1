@@ -1,5 +1,6 @@
 package br.com.fiap.gsJava.entities;
 
+import br.com.fiap.gsJava.dto.UsuarioRequestDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,5 +34,24 @@ public class Usuario {
 	@ManyToOne
 	@JoinColumn(name = "selo_id")
 	private Selo selo;
+
+	
+	public Usuario(UsuarioRequestDTO usuarioRequestDTO) {
+		this.nome = usuarioRequestDTO.getNome();
+		this.email = usuarioRequestDTO.getEmail();
+		this.senha = usuarioRequestDTO.getSenha();
+		this.cidade = usuarioRequestDTO.getCidade();
+		this.estado = usuarioRequestDTO.getEstado();
+		this.telefone = usuarioRequestDTO.getTelefone();
+		
+		/*Selo selo = new Selo(usuarioRequestDTO.getSeloId()); //cria um selo passando o ID
+		this.selo = selo;*/
+		
+	
+
+	}
+	
+	
+	
 
 }
