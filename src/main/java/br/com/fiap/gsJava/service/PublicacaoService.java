@@ -40,11 +40,8 @@ public class PublicacaoService {
 	}
 	
 	
-	//implementar buscar por ?status=false
-	
 
 	public PublicacaoResponseDTO findById(Long id) {
-
 		Optional<Publicacao> optionalPublicacao = publicacaoRepository.findById(id);
 				
 				
@@ -56,6 +53,20 @@ public class PublicacaoService {
 		
 		return dto;
 	
+	}
+
+	
+	public List<PublicacaoResponseDTO> findAllByStatus(boolean status) {
+	    List<Publicacao> publicacoes = publicacaoRepository.findByStatus(status);
+
+	    List<PublicacaoResponseDTO> listaDto = new ArrayList<>();
+
+	    for (Publicacao publicacao : publicacoes) {
+	        PublicacaoResponseDTO dto = new PublicacaoResponseDTO(publicacao);
+	        listaDto.add(dto);
+	    }
+
+	    return listaDto;
 	}
 
 	
