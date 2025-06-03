@@ -17,7 +17,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PublicacaoRequestDTO {
+public class PublicacaoRequestPutDTO {
 
 	private Long id;
 
@@ -49,25 +49,21 @@ public class PublicacaoRequestDTO {
     @Min(value = 0, message = "Os votos falsos devem ser zero ou mais")
     private Long votosFalso;
 
-    @NotNull(message = "O usuário e id são obrigatórios")
-    private Usuario usuario;
+    
 
 
 
 
-	public PublicacaoRequestDTO(Long id, String titulo, String descricao, String imagem, String cidade, String estado, 
-			Date data, Long votosConfiavel, Long votosFalso, Usuario usuario) {
+	public PublicacaoRequestPutDTO(Long id, String titulo, String descricao, String imagem, String cidade, String estado, 
+			Date data, Long votosConfiavel, Long votosFalso) {
 		this.id = id;
 		this.titulo = titulo;
 		this.descricao = descricao;
 		this.imagem = imagem;
 		this.cidade = cidade;
-		this.estado = estado;
-		
-		   
+		this.estado = estado;	   
 		this.votosConfiavel = votosConfiavel;
 		this.votosFalso = votosFalso;
-		this.usuario = usuario;
 	}
 	
 	

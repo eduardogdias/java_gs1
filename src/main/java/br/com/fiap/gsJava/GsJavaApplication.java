@@ -58,7 +58,7 @@ public class GsJavaApplication implements CommandLineRunner{
 			    "São Paulo",
 			    "SP",
 			    new Date(),
-			    "ativo",
+			    true,
 			    23L,
 			    2L,
 			    u1
@@ -72,7 +72,7 @@ public class GsJavaApplication implements CommandLineRunner{
 			    "Petrópolis",
 			    "RJ",
 			    new Date(),
-			    "ativo",
+			    true,
 			    47L,
 			    1L,
 			    u2
@@ -86,7 +86,7 @@ public class GsJavaApplication implements CommandLineRunner{
 			    "Belo Horizonte",
 			    "MG",
 			    new Date(),
-			    "ativo",
+			    true,
 			    5L,
 			    19L,
 			    u3

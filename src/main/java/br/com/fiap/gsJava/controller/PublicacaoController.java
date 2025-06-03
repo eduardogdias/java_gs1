@@ -3,7 +3,6 @@ package br.com.fiap.gsJava.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fiap.gsJava.entity.Publicacao;
+import br.com.fiap.gsJava.dto.publicacao.PublicacaoRequestDTO;
+import br.com.fiap.gsJava.dto.publicacao.PublicacaoRequestPutDTO;
+import br.com.fiap.gsJava.dto.publicacao.PublicacaoResponseDTO;
 import br.com.fiap.gsJava.service.PublicacaoService;
 import jakarta.validation.Valid;
 
@@ -27,37 +28,40 @@ public class PublicacaoController {
 	private PublicacaoService publicacaoService;
 	
 	@GetMapping
-	public ResponseEntity<List<Publicacao>> findAll(){
-		List<Publicacao> list = publicacaoService.findAll();
-		return ResponseEntity.ok().body(list); 
+	public ResponseEntity<List<PublicacaoResponseDTO>> findAll(){
+		List<PublicacaoResponseDTO> listDto = publicacaoService.findAll();
+		return ResponseEntity.ok().body(listDto); 
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Publicacao> findById(@PathVariable Long id){
-		Publicacao Publicacao = publicacaoService.findById(id);
-		return ResponseEntity.ok().body(Publicacao);			
+	public ResponseEntity<PublicacaoResponseDTO> findById(@PathVariable Long id){
+		PublicacaoResponseDTO dto = publicacaoService.findById(id);
+		return ResponseEntity.ok().body(dto);			
 		
 	}
+	
 	
 	@PostMapping
-	public ResponseEntity<Publicacao> save(@RequestBody @Valid Publicacao Publicacao){
-		Publicacao result = publicacaoService.save(Publicacao);
-		return ResponseEntity.created(null).body(result);	
+	public ResponseEntity<PublicacaoResponseDTO> save(@RequestBody @Valid PublicacaoRequestDTO publicacaoRequestDTO){
+		PublicacaoResponseDTO dto = publicacaoService.save(publicacaoRequestDTO);
+		return ResponseEntity.created(null).body(dto);	
 	}
 	
-	/*
+	
+	
+
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Publicacao> update(@PathVariable Long id, @RequestBody @Valid Publicacao Publicacao){
-		Publicacao PublicacaoAtualizado = publicacaoService.update(id, Publicacao);
-		return ResponseEntity.ok().body(PublicacaoAtualizado);
+	public ResponseEntity<PublicacaoResponseDTO> update(@PathVariable Long id, @RequestBody @Valid PublicacaoRequestPutDTO publicacaoRequestPutDTO){
+		PublicacaoResponseDTO dto = publicacaoService.update(id, publicacaoRequestPutDTO);
+		return ResponseEntity.ok().body(dto);
 		
 	}
-*/
+
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Publicacao> deleteById(@PathVariable Long id){
-		Publicacao Publicacao = publicacaoService.deleteById(id);
-		return ResponseEntity.ok().body(Publicacao);	
+	public ResponseEntity<PublicacaoResponseDTO> deleteById(@PathVariable Long id){
+		PublicacaoResponseDTO dto = publicacaoService.deleteById(id);
+		return ResponseEntity.ok().body(dto);	
 		
 		
 	}

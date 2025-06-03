@@ -64,6 +64,9 @@ public class Usuario {
 		this.selo = selo;
 	}
 
+	public Usuario(Long id) { //construtor para PublicacaoDTO
+		this.id = id;
+	}
 
 	public Long getId() {
 		return id;
