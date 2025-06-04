@@ -7,12 +7,15 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import br.com.fiap.gsJava.entity.Publicacao;
-import br.com.fiap.gsJava.entity.Selo;
-import br.com.fiap.gsJava.entity.Usuario;
-import br.com.fiap.gsJava.repository.PublicacaoRepository;
-import br.com.fiap.gsJava.repository.SeloRepository;
-import br.com.fiap.gsJava.repository.UsuarioRepository;
+import br.com.fiap.gsJava.entities.Local;
+import br.com.fiap.gsJava.entities.Publicacao;
+import br.com.fiap.gsJava.entities.Selo;
+import br.com.fiap.gsJava.entities.Usuario;
+import br.com.fiap.gsJava.enums.LocalEventoEnum;
+import br.com.fiap.gsJava.repositories.LocalRepository;
+import br.com.fiap.gsJava.repositories.PublicacaoRepository;
+import br.com.fiap.gsJava.repositories.SeloRepository;
+import br.com.fiap.gsJava.repositories.UsuarioRepository;
 
 @SpringBootApplication
 public class GsJavaApplication implements CommandLineRunner{
@@ -27,6 +30,9 @@ public class GsJavaApplication implements CommandLineRunner{
 	@Autowired
 	private PublicacaoRepository publicacaoRepository;
 	
+	@Autowired
+	private LocalRepository localRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(GsJavaApplication.class, args);
 	}
@@ -34,6 +40,8 @@ public class GsJavaApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 	
+		//instanciando todas as entidades
+		
 		Selo s1 = new Selo(null, "comum");
 		Selo s2 = new Selo(null, "confiavel");
 		Selo s3 = new Selo(null, "heroi");		
@@ -50,50 +58,22 @@ public class GsJavaApplication implements CommandLineRunner{
 		usuarioRepository.save(u3);
 		
 		
-		Publicacao pub1 = new Publicacao(
-			    null,
-			    "Alagamento na Av. Brasil",
-			    "A avenida está completamente alagada. Evitem passar por lá.",
-			    "https://exemplo.com/imagem1.jpg",
-			    "São Paulo",
-			    "SP",
-			    new Date(),
-			    true,
-			    23L,
-			    2L,
-			    u1
-			);
-
-			Publicacao pub2 = new Publicacao(
-			    null,
-			    "Deslizamento de terra no Morro Azul",
-			    "Deslizamento bloqueou parte da estrada. Autoridades foram acionadas.",
-			    "https://exemplo.com/imagem2.jpg",
-			    "Petrópolis",
-			    "RJ",
-			    new Date(),
-			    true,
-			    47L,
-			    1L,
-			    u2
-			);
-
-			Publicacao pub3 = new Publicacao(
-			    null,
-			    "Fake News sobre ponte caída",
-			    "Circula nas redes uma fake news dizendo que a ponte caiu. Isso é falso.",
-			    "https://exemplo.com/imagem3.jpg",
-			    "Belo Horizonte",
-			    "MG",
-			    new Date(),
-			    true,
-			    5L,
-			    19L,
-			    u3
-			);
-			publicacaoRepository.save(pub1);
-			publicacaoRepository.save(pub2);
-			publicacaoRepository.save(pub3);
+		Publicacao pub1 = new Publicacao(null, "Alagamento na Av. Brasil", "A avenida está completamente alagada. Evitem passar por lá.", "https://exemplo.com/imagem1.jpg", "São Paulo", "São Paulo", new Date(), true, 23L, 2L, u1);
+		Publicacao pub2 = new Publicacao(null, "Deslizamento de terra no Morro Azul","Deslizamento bloqueou parte da estrada. Autoridades foram acionadas.", "https://exemplo.com/imagem2.jpg", "Petrópolis", "Rio de Janeiro", new Date(), true, 47L, 1L, u2);
+		Publicacao pub3 = new Publicacao(null, "Fake News sobre ponte caída", "Circula nas redes uma fake news dizendo que a ponte caiu. Isso é falso.", "https://exemplo.com/imagem3.jpg", "Belo Horizonte", "Minas Gerais", new Date(), true, 5L, 19L, u3);
+		publicacaoRepository.save(pub1);
+		publicacaoRepository.save(pub2);
+		publicacaoRepository.save(pub3);
+		
+			
+		Local local1 = new Local(null, "Rua das Flores", 123L, "São Paulo", "São Paulo", LocalEventoEnum.ABRIGO, true);
+		Local local2 = new Local(null, "Avenida Brasil", 456L, "Rio de Janeiro", "Rio de Janeiro", LocalEventoEnum.ALAGAMENTO, true);
+		Local local3 = new Local(null, "Rua da Esperança", 789L, "Belo Horizonte", "Minas Gerais", LocalEventoEnum.EMERGENCIA, true);
+		localRepository.save(local1);
+		localRepository.save(local2);
+		localRepository.save(local3);
+		
+			
 	}
 
 }
