@@ -5,7 +5,6 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.fiap.gsJava.entities.Emergencia;
-import br.com.fiap.gsJava.entities.Usuario;
 import br.com.fiap.gsJava.enums.LocalEventoEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
