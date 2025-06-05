@@ -37,6 +37,8 @@ public class Usuario {
 	private Selo selo;
 
 	@OneToMany(mappedBy = "usuario")
+	@JsonIgnore
+	@Transient
 	private List<Emergencia> emergencias = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "usuario")

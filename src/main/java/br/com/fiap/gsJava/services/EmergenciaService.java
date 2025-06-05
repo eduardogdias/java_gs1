@@ -11,9 +11,13 @@ import br.com.fiap.gsJava.dtos.emergencia.EmergenciaRequestDTO;
 import br.com.fiap.gsJava.dtos.emergencia.EmergenciaRequestPutDTO;
 import br.com.fiap.gsJava.dtos.emergencia.EmergenciaResponseDTO;
 import br.com.fiap.gsJava.entities.Emergencia;
+import br.com.fiap.gsJava.entities.Local;
 import br.com.fiap.gsJava.entities.Usuario;
+import br.com.fiap.gsJava.enums.LocalEventoEnum;
+import br.com.fiap.gsJava.exceptions.BusinessException;
 import br.com.fiap.gsJava.exceptions.EntityNotFoundException;
 import br.com.fiap.gsJava.repositories.EmergenciaRepository;
+import br.com.fiap.gsJava.repositories.LocalRepository;
 import br.com.fiap.gsJava.repositories.UsuarioRepository;
 
 @Service
@@ -24,6 +28,9 @@ public class EmergenciaService {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private LocalRepository localRepository;
 
 	public List<EmergenciaResponseDTO> findAll() {
 		List<Emergencia> entities = emergenciaRepository.findAll();
@@ -52,20 +59,28 @@ public class EmergenciaService {
 	
 	}
 
-	public EmergenciaResponseDTO save(EmergenciaRequestDTO emergenciaDTO) {	
-		
-		Usuario usuario = usuarioRepository.findById(emergenciaDTO.getUsuario().getId()).orElseThrow(
-				() -> new EntityNotFoundException("Usuário não encontrado"));
-		
-		Emergencia entity = new Emergencia(emergenciaDTO);
-		entity.setUsuario(usuario);
-		
-		Emergencia entitySave = emergenciaRepository.save(entity);
-		
-		EmergenciaResponseDTO dto = new EmergenciaResponseDTO(entitySave);	
-		
-		return dto;
+	public EmergenciaResponseDTO save(EmergenciaRequestDTO emergenciaDTO) {
+
+	    Usuario usuario = usuarioRepository.findById(emergenciaDTO.getUsuario().getId())
+	            .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+
+	    Local local = localRepository.findById(emergenciaDTO.getLocal().getId())
+	            .orElseThrow(() -> new EntityNotFoundException("Local não encontrado"));
+
+	    // o ID do local deve ser ter o atributo 'evento' do tipo EMERGENCIA
+	   if (local.getEvento() != LocalEventoEnum.EMERGENCIA) {
+	        throw new BusinessException("O ID do Local deve ser um Local cujo Evento seja do tipo 'EMERGENCIA'");
+	    }
+	    
+	    Emergencia entity = new Emergencia(emergenciaDTO);
+	    entity.setUsuario(usuario);
+	    entity.setLocal(local);
+
+	    Emergencia entitySave = emergenciaRepository.save(entity);
+
+	    return new EmergenciaResponseDTO(entitySave);
 	}
+
 
 
 	public EmergenciaResponseDTO update(Long id, EmergenciaRequestPutDTO emergenciaDTO) {

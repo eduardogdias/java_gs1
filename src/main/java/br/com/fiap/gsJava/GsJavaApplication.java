@@ -79,9 +79,9 @@ public class GsJavaApplication implements CommandLineRunner{
 		localRepository.save(local3);
 		
 		
-		Emergencia emergencia1 = new Emergencia(null, "Preciso de um bote para usar na enchente.", true, new Date(),usu1);
-		Emergencia emergencia2 = new Emergencia(null, "Preciso de ajuda para subir os meus móveis.", true, new Date(), usu2);
-		Emergencia emergencia3 = new Emergencia(null, "Estou no telhado aguardando resgate.", true, new Date(), usu3);
+		Emergencia emergencia1 = new Emergencia(null, "Preciso de um bote para usar na enchente.", true, new Date(),usu1, local3);
+		Emergencia emergencia2 = new Emergencia(null, "Preciso de ajuda para subir os meus móveis.", true, new Date(), usu2, local3);
+		Emergencia emergencia3 = new Emergencia(null, "Estou no telhado aguardando resgate.", true, new Date(), usu3, local3);
 		emergenciaRepository.save(emergencia1);
 		emergenciaRepository.save(emergencia2);
 		emergenciaRepository.save(emergencia3);

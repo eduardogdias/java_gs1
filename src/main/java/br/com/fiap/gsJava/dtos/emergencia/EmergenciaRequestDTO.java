@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import br.com.fiap.gsJava.entities.Local;
 import br.com.fiap.gsJava.entities.Usuario;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -29,5 +30,8 @@ public class EmergenciaRequestDTO {
 	
 	@NotNull(message = "O usuário e id são obrigatórios")
     private Usuario usuario;
+	
+	@NotNull(message = "O local e id são obrigatórios")
+    private Local local;
 	
 }

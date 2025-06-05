@@ -54,4 +54,12 @@ public class ControllerExceptionHandler { //vai interceptar todas as exception d
 	    return ResponseEntity.badRequest().body(msg);
 	}
 
+	
+	@ExceptionHandler(BusinessException.class) //captura o Evento do Local ao criar uma Emergencia
+	public ResponseEntity<MessageException> handleBusinessException(BusinessException e) {
+	    MessageException msg = new MessageException();
+	    msg.setMessage(e.getMessage());
+	    return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(msg); // 422 Unprocessable Entity
+	}
+
 }

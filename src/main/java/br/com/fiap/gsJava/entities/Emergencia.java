@@ -41,6 +41,10 @@ public class Emergencia {
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
 
+	@ManyToOne
+	@JoinColumn(name = "local_id")
+	private Local local;
+	
 	public Emergencia(EmergenciaRequestDTO dto) {
 		this.id = dto.getId();
 		this.mensagem = dto.getMensagem();
