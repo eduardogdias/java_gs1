@@ -37,6 +37,9 @@ public class Usuario {
 	private Selo selo;
 
 	@OneToMany(mappedBy = "usuario")
+	private List<Emergencia> emergencias = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "usuario")
 	@JsonIgnore
 	@Transient
 	private List<Publicacao> publicacoes = new ArrayList<>();
@@ -147,10 +150,6 @@ public class Usuario {
 		this.selo = selo;
 	}
 
-
-	public List<Publicacao> getPublicacoes() {
-		return publicacoes;
-	}
 
 
 }

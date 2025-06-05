@@ -54,7 +54,6 @@ public class LocalService {
 		
 		return dto;
 	
-		
 	}
 
 	public LocalResponseDTO save(LocalRequestDTO localDTO) {	

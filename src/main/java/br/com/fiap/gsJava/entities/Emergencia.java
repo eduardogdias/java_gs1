@@ -1,10 +1,19 @@
 package br.com.fiap.gsJava.entities;
 
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import br.com.fiap.gsJava.dtos.emergencia.EmergenciaRequestDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,8 +33,23 @@ public class Emergencia {
 	private String mensagem;
 	private Boolean status;
 	
-	private Usuario usuario;
+	@Temporal(TemporalType.DATE)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	private Date data;
 	
-	private Local local;
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
+
+	public Emergencia(EmergenciaRequestDTO dto) {
+		this.id = dto.getId();
+		this.mensagem = dto.getMensagem();
+		this.status = dto.getStatus();
+		this.data = dto.getData();
+		this.usuario = dto.getUsuario();
+	}
+	
+	
+
 	
 }
