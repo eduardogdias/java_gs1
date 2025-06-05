@@ -24,5 +24,8 @@ public class Emergencia {
 	private String mensagem;
 	private Boolean status;
 	
+	private Usuario usuario;
+	
+	private Local local;
 	
 }
