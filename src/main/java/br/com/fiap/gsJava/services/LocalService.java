@@ -7,7 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.fiap.gsJava.dtos.local.LocalDTO;
+import br.com.fiap.gsJava.dtos.local.LocalRequestDTO;
+import br.com.fiap.gsJava.dtos.local.LocalResponseDTO;
 import br.com.fiap.gsJava.entities.Local;
 import br.com.fiap.gsJava.exceptions.EntityNotFoundException;
 import br.com.fiap.gsJava.repositories.LocalRepository;
@@ -18,47 +19,58 @@ public class LocalService {
 	@Autowired
 	private LocalRepository localRepository;
 
-	public List<LocalDTO> findAll() {
+	public List<LocalResponseDTO> findAll() {
 		List<Local> entities = localRepository.findAll();
-		List<LocalDTO> dtos = new ArrayList<>();
+		List<LocalResponseDTO> dtos = new ArrayList<>();
 		
 		for (Local entity : entities) {
-			LocalDTO dto = new LocalDTO(entity);
-			dtos.add(dto);
+			if(entity.getStatus()) {
+				LocalResponseDTO dto = new LocalResponseDTO(entity);
+				dtos.add(dto);
+			}
 		}
 		
 		return dtos;
 	}
 
+	public List<LocalResponseDTO> findByStatus(boolean status){
+		List<Local> entities = localRepository.findByStatus(status);
+		List<LocalResponseDTO> dtos = new ArrayList<>();
+		for (Local entity : entities) {
+			LocalResponseDTO dto = new LocalResponseDTO(entity);
+			dtos.add(dto);
+		}
+		return dtos;
+	}
 	
-	public LocalDTO findById(Long id) {
+	public LocalResponseDTO findById(Long id) {
 		Optional<Local> optional = localRepository.findById(id);	
 		
-		if (optional.isEmpty()) { 
+		if (optional.isEmpty() || !optional.get().getStatus()) {
 			throw new EntityNotFoundException("Local não encontrado");
 		}
 				
-		LocalDTO dto = new LocalDTO(optional.get());
+		LocalResponseDTO dto = new LocalResponseDTO(optional.get());
 		
 		return dto;
 	
 		
 	}
 
-	public LocalDTO save(LocalDTO localDTO) {	
+	public LocalResponseDTO save(LocalRequestDTO localDTO) {	
 		Local entity = new Local(localDTO);
 		Local entitySave = localRepository.save(entity);
 		
-		LocalDTO dto = new LocalDTO(entitySave);
+		LocalResponseDTO dto = new LocalResponseDTO(entitySave);
 		
 		return dto;
 	}
 
 	
-	public LocalDTO update(Long id, LocalDTO localDTO) {
+	public LocalResponseDTO update(Long id, LocalRequestDTO localDTO) {
 		Optional<Local> optional = localRepository.findById(id);
 
-		if (optional.isEmpty()) {
+		if (optional.isEmpty() || !optional.get().getStatus()) {
 			throw new EntityNotFoundException("Local não encontrado");
 		}
 
@@ -70,19 +82,23 @@ public class LocalService {
 		localExistente.setEvento(localDTO.getEvento());
 		
 		Local entity = localRepository.save(localExistente);
-		LocalDTO dto = new LocalDTO(entity);
+		LocalResponseDTO dto = new LocalResponseDTO(entity);
 		
 		return dto;
 		
 	}
 
 	
-	public LocalDTO deleteById(Long id) {
-		Local entity = localRepository.findById(id).orElseThrow(
-					() -> new EntityNotFoundException("Local não encontrado"));
+	public LocalResponseDTO deleteById(Long id) {
+		Optional<Local> entity = localRepository.findById(id);
 		
-		localRepository.deleteById(id);
+		if (entity.isEmpty() || !entity.get().getStatus()) {
+			throw new EntityNotFoundException("Local não encontrado ou já deletado");
+		}
 		
-		return new LocalDTO(entity);
+		entity.get().setStatus(false);
+		localRepository.save(entity.get());
+	
+		return new LocalResponseDTO(entity.get());
 	}
 }

@@ -16,38 +16,26 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class LocalDTO {
+public class LocalResponseDTO {
 
 	
 	private Long id;
 	
-	@NotBlank(message = "A rua é obrigatória")
     private String rua;
-
-    @NotNull(message = "O número é obrigatório")
-    @Min(value = 1, message = "O número deve ser maior que zero")
     private Long numero;
-
-    @NotBlank(message = "A cidade é obrigatória")
     private String cidade;
-
-    @NotBlank(message = "O estado é obrigatório")
     private String estado;
-
-    @NotNull(message = "O evento é obrigatório e deve ser: 'EMERGENCIA', 'ABRIGO' ou 'ALAGAMENTO'")
-    @Enumerated(EnumType.STRING)
     private LocalEventoEnum evento;
-	
-    private boolean status; 
+    private Boolean status; 
     
-	public LocalDTO(Local local) {
+	public LocalResponseDTO(Local local) {
 		this.id = local.getId();
 		this.rua = local.getRua();
 		this.numero = local.getNumero();
 		this.cidade = local.getCidade();
 		this.estado = local.getEstado();
 		this.evento = local.getEvento();
-		this.status = true;
+		this.status = local.getStatus();
 	}
 
 	 

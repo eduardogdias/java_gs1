@@ -1,6 +1,6 @@
 package br.com.fiap.gsJava.entities;
 
-import br.com.fiap.gsJava.dtos.local.LocalDTO;
+import br.com.fiap.gsJava.dtos.local.LocalRequestDTO;
 import br.com.fiap.gsJava.enums.LocalEventoEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -32,9 +32,9 @@ public class Local {
 	
 	@Enumerated(EnumType.STRING)
 	private LocalEventoEnum evento;
-	private boolean status;
+	private Boolean status;
 	
-	public Local(LocalDTO localDTO) {
+	public Local(LocalRequestDTO localDTO) {
 		this.id = localDTO.getId();
 		this.rua = localDTO.getRua();
 		this.numero = localDTO.getNumero();
