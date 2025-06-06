@@ -78,7 +78,7 @@ Cada emergência acontece em um único local.
 
 ## Endpoints
 
-**1.Selo:**
+**1. Selo:**
 
 | Método | URI           | Descrição                     |
 | ------ | ------------- | -----------------------------|
@@ -244,7 +244,7 @@ Para testar localmente:
 4. Dê um Run na classe "GsJavaApplication";
 5. Teste as requisições no Postman/Insomnia ou pelo Swagger.
 
-Para testar pelo Deploy;
+Para testar pelo Deploy:
 - No Postman/Insomnia use o link abaixo e coloque os endpoints no final: 
 `https://java-gs1-v1.onrender.com/` 
 
@@ -252,7 +252,7 @@ Para testar pelo Deploy;
 `https://java-gs1-v1.onrender.com/swagger-ui/index.html`
 
 **Observações:**
-Não é necessário passar suas crenciais do banco, pois o projeto utiliza o H2;
+Não é necessário passar suas crenciais do banco, pois o projeto utiliza o H2.
 
 ---
 
