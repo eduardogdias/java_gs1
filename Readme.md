@@ -88,6 +88,7 @@ Cada emergência acontece em um único local.
 | PUT    | `/selos/{id}` | Atualiza um selo existente    |
 | DELETE | `/selos/{id}` | Deleta um selo pelo ID        |
 
+
 **2. Usuario:**
 
 | Método | URI            | Descrição                    |
@@ -97,6 +98,7 @@ Cada emergência acontece em um único local.
 | POST   | `/usuarios`    | Cria um novo usuário         |
 | PUT    | `/usuarios/{id}` | Atualiza um usuário existente|
 | DELETE | `/usuarios/{id}` | Deleta um usuário pelo ID    |
+
 
 **3. Publicacao:**
 
@@ -109,6 +111,7 @@ Cada emergência acontece em um único local.
 | PUT    | `/publicacoes/{id}`  | Atualiza os dados de uma publicação existente                                          |
 | DELETE | `/publicacoes/{id}`  | Deleta uma publicação pelo ID                                                         |
 
+
 **4. Emergencia:**
 
 | Método | URI                   | Descrição                                                         |
@@ -118,6 +121,7 @@ Cada emergência acontece em um único local.
 | POST   | `/emergencias`        | Cria uma nova emergência                                         |
 | PUT    | `/emergencias/{id}`   | Atualiza os dados de uma emergência existente                    |
 | DELETE | `/emergencias/{id}`   | Deleta uma emergência pelo ID                                    |
+
 
 **5. Local:**
 
