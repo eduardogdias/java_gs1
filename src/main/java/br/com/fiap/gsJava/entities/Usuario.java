@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.fiap.gsJava.dtos.usuario.UsuarioRequestDTO;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +15,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -36,14 +36,12 @@ public class Usuario {
 	@JoinColumn(name = "selo_id")
 	private Selo selo;
 
-	@OneToMany(mappedBy = "usuario")
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
 	@JsonIgnore
-	@Transient
 	private List<Emergencia> emergencias = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "usuario")
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE) //ao excluir o usuário, suas publicações e emergências também serão excluidas
 	@JsonIgnore
-	@Transient
 	private List<Publicacao> publicacoes = new ArrayList<>();
 	
 	

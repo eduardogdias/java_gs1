@@ -67,8 +67,12 @@ public class EmergenciaService {
 	    Local local = localRepository.findById(emergenciaDTO.getLocal().getId())
 	            .orElseThrow(() -> new EntityNotFoundException("Local não encontrado"));
 
+	    if(!local.getStatus()) {
+	    	throw new EntityNotFoundException("Local não encontrado");
+	    }
+	    
 	    // o ID do local deve ser ter o atributo 'evento' do tipo EMERGENCIA
-	   if (local.getEvento() != LocalEventoEnum.EMERGENCIA) {
+	    if(local.getEvento() != LocalEventoEnum.EMERGENCIA) {
 	        throw new BusinessException("O ID do Local deve ser um Local cujo Evento seja do tipo 'EMERGENCIA'");
 	    }
 	    

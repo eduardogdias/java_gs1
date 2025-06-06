@@ -62,4 +62,6 @@ public class ControllerExceptionHandler { //vai interceptar todas as exception d
 	    return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(msg); // 422 Unprocessable Entity
 	}
 
+	
+	
 }

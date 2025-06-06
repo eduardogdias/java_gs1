@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.fiap.gsJava.entities.Selo;
+import br.com.fiap.gsJava.exceptions.BusinessException;
 import br.com.fiap.gsJava.exceptions.EntityNotFoundException;
 import br.com.fiap.gsJava.repositories.SeloRepository;
 
@@ -53,7 +54,13 @@ public class SeloService {
 					() -> new EntityNotFoundException("Selo não encontrado"));
 		}
 
+		
 		Selo selo = optional.get();
+		
+		if (!selo.getUsuarios().isEmpty()) {
+	        throw new BusinessException("Não é possível deletar um selo que está em uso por usuários");
+	    }
+		
 		seloRepository.deleteById(id);
 		return selo;
 	}

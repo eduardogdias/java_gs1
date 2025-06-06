@@ -15,7 +15,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -41,7 +40,6 @@ public class Local {
 	
 	@OneToMany(mappedBy = "local")
 	@JsonIgnore
-	@Transient
 	private List<Emergencia> emergencias = new ArrayList<>();
 	
 	public Local(LocalRequestDTO localDTO) {
