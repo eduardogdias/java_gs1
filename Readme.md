@@ -43,7 +43,7 @@ Além disso, o app conta com:
 
 ---
 
-**Estrutura do Banco de Dados:**
+## Estrutura do Banco de Dados:
 ![](images/banco.png)
 
 **Entidades:** Selo, Usuario, Publicacao, Emergencia, Local
