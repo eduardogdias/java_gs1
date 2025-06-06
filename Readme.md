@@ -8,6 +8,7 @@
 > Então foi pensando nisso que desenvolvemos o app Rota Segura, que é um aplicativo focado em informações reais de usuários para usuários. 
 
 
+
 **Rota Segura** é um app que conecta pessoas durante situações de risco, como enchentes e alagamentos, promovendo uma rede de apoio baseada em localização. 
 Ele oferece um feed colaborativo onde usuários compartilham fotos e relatos do que está realmente acontecendo em cada região, ajudando outros a tomarem decisões seguras sobre se devem sair de casa ou não.
 
