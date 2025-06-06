@@ -249,8 +249,8 @@ Para testar localmente:
 5. Teste as requisições no Postman/Insomnia ou pelo Swagger.
 
 Para testar pelo Deploy:
-- No Postman/Insomnia use o link abaixo e coloque os endpoints no final: 
-`https://java-gs1-v1.onrender.com/` 
+- No Postman/Insomnia use o link a seguir e coloque os endpoints no final dele: 
+`https://java-gs1-v1.onrender.com` 
 
 - Ou faça os testes direto pelo Swagger:
 `https://java-gs1-v1.onrender.com/swagger-ui/index.html`
